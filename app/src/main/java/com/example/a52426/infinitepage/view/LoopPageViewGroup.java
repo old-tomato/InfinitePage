@@ -105,13 +105,13 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
                 PageView pv = (PageView) v;
                 if(pv.getLevelTag() == PageMove.LEVEL_PRE){
                     // 上一页
-                    pv.layout(0 - preView.getWidth() , 0 , 0 , b);
+                    pv.layout(- preView.getMeasuredWidth() , 0 , 0 , b);
                 }else if(pv.getLevelTag() == PageMove.LEVEL_CURR){
                     // 当前页
                     pv.layout(0 , 0 , r , b);
                 }else if(pv.getLevelTag() == PageMove.LEVEL_NEXT){
                     // 下一页
-                    nextView.layout(0 , 0 , r , b);
+                    pv.layout(0 , 0 , r , b);
                 }
             }
         }

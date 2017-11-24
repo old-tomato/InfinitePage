@@ -67,6 +67,7 @@ public class PageMoveTurning extends PageMove {
 
     @Override
     public void prePage(float offset) {
+        Log.d(TAG , "pre page " + prePageView.getLeft());
         boolean checkFlag = checkPage();
         if(!checkFlag){
             Log.e(TAG , "check flag failed");
