@@ -121,6 +121,11 @@ public class PageMoveTurning extends PageMove {
         }else if(actionFlag == MOVE_PRE){
             prePageChange();
         }
+
+        if(parent.getOnPageChangeListener() != null){
+            parent.getOnPageChangeListener().onPageChange(actionFlag , prePageView , currentPageView , nextPageView);
+        }
+
     }
 
     /**

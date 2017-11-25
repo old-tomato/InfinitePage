@@ -26,6 +26,8 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
     private PageMove pageMove = new PageMoveTurning();
     private int actionLock;
 
+    private OnPageChangeListener onPageChangeListener;
+
     public LoopPageViewGroup(Context context) {
         this(context , null);
     }
@@ -157,4 +159,25 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
         }
         return false;
     }
+
+    public interface OnPageChangeListener{
+        /**
+         *
+         * @param moveFlag
+         * @param preView
+         * @param currentView
+         * @param nextView
+         */
+        void onPageChange(int moveFlag , PageLevelView preView , PageLevelView currentView , PageLevelView nextView);
+    }
+
+    public void setOnPageChangeListener(OnPageChangeListener onPageChangeListener){
+        this.onPageChangeListener = onPageChangeListener;
+    }
+
+    public OnPageChangeListener getOnPageChangeListener(){
+        return onPageChangeListener;
+    }
+
+
 }
