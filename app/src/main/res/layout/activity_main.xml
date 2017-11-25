@@ -7,6 +7,7 @@
     tools:context="com.example.a52426.infinitepage.MainActivity">
 
     <com.example.a52426.infinitepage.view.LoopPageViewGroup
+        android:id="@+id/lpvg_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

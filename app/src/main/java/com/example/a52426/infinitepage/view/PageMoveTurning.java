@@ -21,7 +21,7 @@ public class PageMoveTurning extends PageMove {
     private int actionFlag = MOVE_IDEL;
 
     @Override
-    public void initPage(LoopPageViewGroup parent, PageView preView, PageView currentView, PageView nextView){
+    public void initPage(LoopPageViewGroup parent, PageLevelView preView, PageLevelView currentView, PageLevelView nextView){
         this.parent = parent;
 
         if(preView != null){
@@ -129,7 +129,7 @@ public class PageMoveTurning extends PageMove {
     private void prePageChange() {
         Log.d(TAG , "pre page change");
 
-        PageView temp1 , temp2 , temp3;
+        PageLevelView temp1 , temp2 , temp3;
         temp1 = prePageView;
         temp2 = currentPageView;
         temp3 = nextPageView;
@@ -147,7 +147,7 @@ public class PageMoveTurning extends PageMove {
     private void nextPageChange() {
         Log.d(TAG  , "next page change");
         // 转换名称
-        PageView temp1 , temp2;
+        PageLevelView temp1 , temp2;
         temp1 = prePageView;
         temp2 = currentPageView;
 

@@ -6,9 +6,9 @@ package com.example.a52426.infinitepage.view;
 
 public abstract class PageMove {
 
-    protected PageView currentPageView;
-    protected PageView prePageView;
-    protected PageView nextPageView;
+    protected PageLevelView currentPageView;
+    protected PageLevelView prePageView;
+    protected PageLevelView nextPageView;
     protected LoopPageViewGroup parent;
 
     protected int parentWidth;
@@ -43,7 +43,7 @@ public abstract class PageMove {
      * 进行下一页的翻页，控件的获取默认从容器中获得
      * @param parent
      */
-    abstract void initPage(LoopPageViewGroup parent, PageView preView, PageView currentView, PageView nextView);
+    abstract void initPage(LoopPageViewGroup parent, PageLevelView preView, PageLevelView currentView, PageLevelView nextView);
 
     /**
      * 进行下一页的翻页

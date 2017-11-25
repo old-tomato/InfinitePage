@@ -9,7 +9,7 @@ import android.view.View;
  * Created by 52426 on 2017/11/24.
  */
 
-public abstract class PageLevelView extends View{
+public class PageLevelView extends View{
 
     private int levelTag;
 

@@ -17,13 +17,13 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
     private static final String TAG = LoopPageViewGroup.class.getSimpleName();
 
     private Context context;
-    private PageView preView;
-    private PageView currentView;
-    private PageView nextView;
+    private PageLevelView preView;
+    private PageLevelView currentView;
+    private PageLevelView nextView;
     private int height;
     private int width;
     private float downX;
-    private PageMove pageMove;
+    private PageMove pageMove = new PageMoveTurning();
     private int actionLock;
 
     public LoopPageViewGroup(Context context) {
@@ -37,31 +37,37 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
     public LoopPageViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        pageMove = new PageMoveTurning();
         setWillNotDraw(false);
-        initChild();
         initListener();
+    }
+
+    /**
+     * 设置自定义的滚动方式，如果没有设置，就是用默认的方式
+     * @param myPageMove
+     */
+    public void setPageMove(PageMove myPageMove){
+        pageMove = myPageMove;
     }
 
     private void initListener() {
         setOnTouchListener(this);
     }
 
-    private void initChild() {
-        preView = new PageView(context);
-        preView.setText("1");
+    /**
+     * 设置当前的界面，只能够设置三个（前一页，当前页，下一页）
+     * @param preView
+     * @param currentView
+     * @param nextView
+     */
+    public void setPageView(PageLevelView preView , PageLevelView currentView , PageLevelView nextView){
+        this.preView =preView;
         preView.setLevelTag(PageMove.LEVEL_PRE);
-        preView.setBackColor(Color.RED);
 
-        currentView = new PageView(context);
-        currentView.setText("2");
+        this.currentView =currentView;
         currentView.setLevelTag(PageMove.LEVEL_CURR);
-        currentView.setBackColor(Color.BLUE);
 
-        nextView = new PageView(context);
-        nextView.setText("3");
+        this.nextView =nextView;
         nextView.setLevelTag(PageMove.LEVEL_NEXT);
-        nextView.setBackColor(Color.GRAY);
 
         // 从下往上添加
         addView(nextView);
@@ -71,15 +77,15 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
         pageMove.initPage(this , null , null , null);
     }
 
-    public PageView getPrePage(){
+    public PageLevelView getPrePage(){
         return preView;
     }
 
-    public PageView getCurrentPage(){
+    public PageLevelView getCurrentPage(){
         return currentView;
     }
 
-    public PageView getNextPage(){
+    public PageLevelView getNextPage(){
         return nextView;
     }
 
@@ -101,8 +107,8 @@ public class LoopPageViewGroup extends ViewGroup implements View.OnTouchListener
         // 对子控件进行布局
         for(int x =0  ; x < getChildCount() ; ++ x){
             View v = getChildAt(x);
-            if(v instanceof PageView){
-                PageView pv = (PageView) v;
+            if(v instanceof PageLevelView){
+                PageLevelView pv = (PageLevelView) v;
                 if(pv.getLevelTag() == PageMove.LEVEL_PRE){
                     // 上一页
                     pv.layout(- preView.getMeasuredWidth() , 0 , 0 , b);
